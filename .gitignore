@@ -3,7 +3,9 @@
 
 virtualenv
 *.db
+*.py[co]
 
 # Secret stuff
 ##############
+
 authentication.py
