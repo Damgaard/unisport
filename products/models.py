@@ -82,5 +82,5 @@ class Product(models.Model):
                                 choices=WOMEN_CHOICES)
 
     def __unicode__(self):
-        return "[Product: {}]".format(self.name)
+        return "[Product: {}]".format(self.name.encode("utf-8"))
 
