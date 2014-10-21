@@ -1,0 +1,9 @@
+# General Stuff
+###############
+
+virtualenv
+*.db
+
+# Secret stuff
+##############
+authentication.py
