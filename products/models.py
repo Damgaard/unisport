@@ -84,3 +84,12 @@ class Product(models.Model):
     def __unicode__(self):
         return "[Product: {}]".format(self.name.encode("utf-8"))
 
+    def save(self, *args, **kwargs):
+        # Override the default save method to ensure we don't store a Product
+        # with invalid values.
+
+        # At most 1 of the demographic categories can be selected.
+        demographics = (self.kids, self.kid_adult, self.women)
+        if sum(attr != 0 for attr in demographics) > 1:
+            raise TypeError("Invalid Demographic values.")
+        super(Product, self).save(*args, **kwargs)
