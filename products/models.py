@@ -62,9 +62,9 @@ class Product(models.Model):
                                help_text="Is this product only available for "
                                          "kids?",
                                choices=KIDS_CHOICES)
-    kids_adult = models.IntegerField(default=0,
-                                     help_text="Is this product available for "
-                                               "both kids and adults?",
+    kid_adult = models.IntegerField(default=0,
+                                    help_text="Is this product available for "
+                                              "both kids and adults?",
                                      choices=KIDS_AND_ADULT_CHOICES)
     package = models.IntegerField(default=0,
                                 help_text="Is this product sold in package?",

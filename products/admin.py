@@ -4,9 +4,9 @@ from models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'delivery', 'free_porto', 'kids', 'kids_adult',
+    list_display = ('name', 'delivery', 'free_porto', 'kids', 'kid_adult',
                     'women', 'package')
-    list_filter = ('delivery', 'free_porto', 'kids', 'kids_adult', 'women',
+    list_filter = ('delivery', 'free_porto', 'kids', 'kid_adult', 'women',
                    'package')
 
 
