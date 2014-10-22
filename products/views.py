@@ -29,7 +29,8 @@ def home(request, category=None, *args, **kwargs):
         # exceeding number of pages or if content exists at all. Show the last page, which
         # will cover the first case and handle the second case inside the view.
         listing = paginator.page(paginator.num_pages)
-    context = {'listing': listing}
+    page = "home" if category is None else "category"
+    context = {'listing': listing, 'page': page}
     return render(request, "products/listing.html", context)
 
 def details(request, pk, *args, **kwargs):

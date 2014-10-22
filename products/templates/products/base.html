@@ -35,8 +35,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li class="dropdown">
+            <li class="{% ifequal page 'home' %}active{% endifequal %}"><a href="/products/">Home</a></li>
+            <li class="dropdown{% ifequal page 'category' %} active{% endifequal %}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/products/kids/">Kids</a></li>
