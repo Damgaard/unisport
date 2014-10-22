@@ -63,13 +63,14 @@ class HomeTest(TestCase):
         """Test that listing is sorted cheapest first."""
         product1 = any_model(Product, kids=0, kid_adult=0, women=0, price="10")
         product2 = any_model(Product, kids=0, kid_adult=0, women=0, price="5")
-        product3 = any_model(Product, kids=0, kid_adult=0, women=0, price="5.75")
+        product3 = any_model(Product, kids=0, kid_adult=0,
+                                      women=0, price="5.75")
         response = self.client.get(reverse('home'))
         self.assertTrue(len(response.context['listing']) == 3)
         self.assertTrue(response.context['listing'][0] == product2)
 
     def test_listing_max_ten_items(self):
-        """Ensure only up to ten items are returned, no matter how many elements in DB."""
+        """Test only up to ten items are returned."""
         for _ in range(25):
             any_model(Product, kids=0, kid_adult=0, women=0, price="10")
         self.assertTrue(Product.objects.all().count() == 25)

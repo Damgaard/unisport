@@ -73,9 +73,7 @@ class Product(models.Model):
                                 help_text="What this product cost. Denominated"
                                           " in DKK.")
     price_old = models.DecimalField(decimal_places=2, max_digits=9, default=0,
-                                    help_text="The previous price of this "
-                                              "product. Used to evaluated "
-                                              "benefits of price changes.")
+                                    help_text="The non-discounted price.")
     women = models.IntegerField(default=0,
                                 help_text="Is this product only available"
                                           "for women?",
