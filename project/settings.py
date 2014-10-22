@@ -8,7 +8,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-import authentication
+try:
+    import authentication
+except ImportError:
+    print "----------"
+    print "WARNING: Custom keys not found. Defaulting to default keys."
+    print "To fix, create a authentication.py file on PYTHONPATH."
+    print "----------"
+    import default_authentication as authentication
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
