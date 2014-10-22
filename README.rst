@@ -16,9 +16,10 @@ To set up the project run the following command.
    virtualenv virtualenv
    source virtualenv/bin/activate
    pip install -r project/requirements.txt
-   ./manage.py syncdb
+   ./manage.py migrate --noinput
    python fetch_initial_data.py
    ./manage.py loaddata sample.json
+   ./manage.py migrate
 
 As part of the process you will be asked to create a superuser. This is the
 useraccount you will need to add/change/delete produccts in Djangos admin
