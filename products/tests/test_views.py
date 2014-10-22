@@ -1,8 +1,32 @@
 from django_any import any_model
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, NoReverseMatch
 from django.test import Client, TestCase
 
 from products.models import Product
+
+class CategoryTest(TestCase):
+    """Test of the category part of the listing page."""
+    def test_no_category(self):
+        """Can we request a non-existing category?"""
+        with self.assertRaises(NoReverseMatch):
+            self.client.get(reverse('category'), kwaegs={"category": "bad"})
+
+    def test_good_category(self):
+        """Can we request all the existing category?"""
+        for category in ['kids', 'kid_adult', 'women']:
+            response = self.client.get(reverse('category',
+                                       kwargs={'category': category}))
+            self.assertTrue(response.status_code == 200)
+
+    def test_only_returns_category_items(self):
+        """Test that only the products matching the category is returned."""
+        any_model(Product, kids=0, kid_adult=0, women=0)
+        kid_product = any_model(Product, kids=1, kid_adult=0, women=0)
+        response = self.client.get(reverse('category',
+                                       kwargs={'category': 'kids'}))
+        self.assertTrue(len(response.context['listing']) == 1)
+        self.assertTrue(response.context['listing'][0] == kid_product)
+
 
 class HomeTest(TestCase):
     """Test suite for the homepage where a product listing is shown."""

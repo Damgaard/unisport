@@ -4,9 +4,19 @@ from django.shortcuts import render
 
 from models import Product
 
-def home(request, *args, **kwargs):
-    """The base page where we display a listing of the cheapest products."""
-    paginator = Paginator(Product.objects.order_by('price'), 10)
+def home(request, category=None, *args, **kwargs):
+    """The base page where we display a listing of the cheapest products.
+
+    :param: The product category. Can be kids, kid_adult or women.
+
+    """
+    queryset = Product.objects.order_by('price')
+    # User has selected a category, narrow down queryset.
+    if category:
+        qs_kwargs = {category: 1}
+        queryset = queryset.filter(**qs_kwargs)
+
+    paginator = Paginator(queryset, 10)
     # Add check and handling for no Products
     page = request.GET.get('page')
     try:
