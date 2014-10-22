@@ -61,6 +61,8 @@
         Use the navigation at the top for particular categories or click a product to get
         detailed information.</p>
 
+        {% if listing|length == 0 %}<p class="bg-danger">Oh no! We cannot find any products of the type you want.</br>You can try going to <a href="/products/">the homepage</a> and make another search.{% endif %}</p>
+
         <div class="row">
             {% for product in listing %}
             <div class="col-md-2 product-cell {% if forloop.counter0|divisibleby:5 %} col-md-offset-1{% endif %}" data-url="{{ product.url }}">
@@ -72,6 +74,24 @@
 </div>
             {% endfor %}
         </div>
+
+        <div class="row">
+            <span class="step-links">
+                {% if listing.has_previous %}
+                    <a href="?page={{ listing.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ listing.number }} of {{ listing.paginator.num_pages }}.
+                </span>
+
+                {% if listing.has_next %}
+                    <a href="?page={{ listing.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
       </div>
 
     </div>

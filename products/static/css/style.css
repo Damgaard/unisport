@@ -19,3 +19,9 @@
 .product-name {
     height: 75px;
 }
+
+.step-links {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
