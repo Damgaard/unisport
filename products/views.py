@@ -30,4 +30,4 @@ def home(request, category=None, *args, **kwargs):
         # will cover the first case and handle the second case inside the view.
         listing = paginator.page(paginator.num_pages)
     context = {'listing': listing}
-    return render(request, "products/base.html", context)
+    return render(request, "products/listing.html", context)
