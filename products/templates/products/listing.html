@@ -12,7 +12,7 @@
 
     <div class="row">
         {% for product in listing %}
-        <div class="col-md-2 product-cell {% if forloop.counter0|divisibleby:5 %} col-md-offset-1{% endif %}" data-url="{{ product.url }}">
+        <div class="col-md-2 product-cell {% if forloop.counter0|divisibleby:5 %} col-md-offset-1{% endif %}" data-id="{{ product.id }}">
             <img src="{{ product.img_url }}">
             <div class="product-name">{{ product.name }}</div>
 

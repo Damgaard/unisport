@@ -4,6 +4,6 @@
 
 $(document).ready(function() {
     $('.product-cell').click( function() {
-        window.location = $(this).data('url');
+        window.location = "/products/" + $(this).data('id');
     });
 });

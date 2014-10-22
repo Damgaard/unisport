@@ -28,6 +28,18 @@ class CategoryTest(TestCase):
         self.assertTrue(response.context['listing'][0] == kid_product)
 
 
+class DetailsTest(TestCase):
+    """Test of the details page."""
+    def test_200_on_existing_product(self):
+        """Sanity check that a 200 is returned for good requests."""
+        any_model(Product, kids=0, kid_adult=0, women=0, id=1)
+        response = self.client.get(reverse('details', kwargs={'pk': 1}))
+        self.assertTrue(response.status_code == 200)
+
+    def test_404_on_missing_product(self):
+        response = self.client.get(reverse('details', kwargs={'pk': 1}))
+        self.assertTrue(response.status_code == 404)
+
 class HomeTest(TestCase):
     """Test suite for the homepage where a product listing is shown."""
     def test_200(self):

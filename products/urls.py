@@ -6,5 +6,6 @@ import views
 urlpatterns = patterns('',
     url(r'^$', views.home, name="home"),
     url(r'^(?P<category>(kids|kid_adult|women))/$', views.home,
-                                                    name="category")
+                                                    name="category"),
+    url(r'^(?P<pk>\d+)/$', views.details, name="details"),
 )
