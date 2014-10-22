@@ -1,1 +1,11 @@
-.DS_Store
+# General Stuff
+###############
+
+virtualenv
+*.db
+*.py[co]
+
+# Secret stuff
+##############
+
+authentication.py

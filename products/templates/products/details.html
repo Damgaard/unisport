@@ -1,0 +1,25 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <h1>Detailed view</h1>
+    {{ product.name }}</br>
+    <img src="{{ product.img_url }}"></br></br>
+    Sizes: {{ product.sizes }}</br>
+    Delivery time: {{ product.delivery }}</br>
+    Price: {{ product.price }} DKK</br>
+    {% ifnotequal product.price product.price_old %}
+        Normal Price: {{ product.price_old }} DKK</br>
+    {% endifnotequal %}
+    {% if product.free_porto %}FREE shipping{% endif %}</br>
+    <a href="{{ product.url }}">Even more details</a></br>
+
+    Notes:</br>
+    {% if product.kids %}A product for kids</br>{% endif %}
+    {% if product.kid_adult %}A product for kids and adults</br>{% endif %}
+    {% if product.women %}A product for women</br>{% endif %}
+    {% if product.package %}Sold as part of a package</br>{% endif %}
+</div>
+{% endblock %}
+
